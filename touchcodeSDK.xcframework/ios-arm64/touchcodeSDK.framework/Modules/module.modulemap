@@ -1,0 +1,4 @@
+framework module touchcodeSDK {
+  header "touchcodeSDK-Swift.h"
+  requires objc
+}

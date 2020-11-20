@@ -1,0 +1,131 @@
+
+<!--Add all new parameters to the bottom of the parameters element.
+ Please do not disrupt the order of these parameters. Doing so will corrupt every campaign-->
+<document>
+    <parameters>
+        <parameter>
+            <name>subsets</name>
+            <type>0</type>
+            <options>
+                <option>
+                    <boolean>enable subsets enhancement</boolean>
+                </option>
+                <option>
+                    <double>threshold to filter out</double>
+                    <default>0.02</default>
+                </option>
+            </options>
+        </parameter>
+        <parameter>
+            <name>taught codes</name>
+            <type>0</type>
+            <options>
+                <option>
+                    <boolean>Device Type</boolean>
+                    <default>true</default>
+                </option>
+                <option>
+                    <boolean>OS Major Version</boolean>
+                    <default>true</default>
+                </option>
+                <option>
+                    <boolean>OS Minor Version</boolean>
+                    <default>false</default>
+                </option>
+                <option>
+                    <boolean>OS Type</boolean>
+                    <default>true</default>
+                </option>
+                <option>
+                    <boolean>Browser Type</boolean>
+                    <default>false</default>
+                </option>
+                <option>
+                    <boolean>Browser Major Version</boolean>
+                    <default>false</default>
+                </option>
+                <option>
+                    <boolean>Browser Minor Version</boolean>
+                    <default>false</default>
+                </option>
+                <option>
+                    <double>threshold to filter out</double>
+                    <default>0.056</default>
+                </option>
+            </options>
+        </parameter>
+        <parameter>
+            <name>min max angle</name>
+            <type>1</type>
+            <options>
+                <option>
+                    <double>+/- degrees</double>
+                    <default>3</default>
+                </option>
+                <option>
+                    <boolean>use percent instead of degree</boolean>
+                </option>
+            </options>
+        </parameter>
+        <parameter>
+            <name>largest angle</name>
+            <type>1</type>
+            <options>
+                <option>
+                    <double>+/- degrees</double>
+                    <default>3</default>
+                </option>
+                <option>
+                    <boolean>use percent instead of degree</boolean>
+                </option>
+            </options>
+        </parameter>
+        <parameter>
+            <name>smallest angle</name>
+            <type>1</type>
+            <options>
+                <option>
+                    <double>+/- degrees</double>
+                    <default>3</default>
+                </option>
+                <option>
+                    <boolean>use percent instead of degree</boolean>
+                </option>
+            </options>
+        </parameter>
+        <parameter>
+            <name>min max angle ratio</name>
+            <type>1</type>
+            <options>
+                <option>
+                    <double>+/- percent</double>
+                    <default>5</default>
+                </option>
+            </options>
+        </parameter>
+        <parameter>
+            <name>min max length ratio</name>
+            <type>1</type>
+            <options>
+                <option>
+                    <double>+/- percent</double>
+                    <default>5</default>
+                </option>
+            </options>
+        </parameter>
+        <parameter>
+            <name>overlay</name>
+            <type>0</type>
+            <options>
+                <option>
+                    <double>threshold</double>
+                    <default>8</default>
+                </option>
+            </options>
+        </parameter>
+    </parameters>
+    <parameterTypes>
+        <typeName>Enhancements</typeName>
+        <typeName>Filter</typeName>
+    </parameterTypes>
+</document>

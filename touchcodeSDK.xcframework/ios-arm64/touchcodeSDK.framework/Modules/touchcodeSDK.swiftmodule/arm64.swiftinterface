@@ -1,0 +1,359 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target arm64-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name touchcodeSDK
+import AdSupport
+import Alamofire
+import CoreFoundation
+import CoreLocation
+import CryptoSwift
+import Foundation
+import NetUtils
+import Swift
+import UIKit
+import os.log
+import os
+public struct JSONDataEncoding : Alamofire.ParameterEncoding {
+  public func encode(_ urlRequest: Alamofire.URLRequestConvertible, with parameters: Alamofire.Parameters?) throws -> Foundation.URLRequest
+  public static func encodingParameters(jsonData: Foundation.Data?) -> Alamofire.Parameters?
+}
+public struct ModelError : Swift.Codable {
+  public var code: Swift.Int?
+  public var message: Swift.String?
+  public var fields: Swift.String?
+  public init(code: Swift.Int?, message: Swift.String?, fields: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public typealias EncodeResult = (data: Foundation.Data?, error: Swift.Error?)
+@_hasMissingDesignatedInitializers open class CodableHelper {
+  public static var dateformatter: Foundation.DateFormatter?
+  open class func decode<T>(_ type: T.Type, from data: Foundation.Data) -> (decodableObj: T?, error: Swift.Error?) where T : Swift.Decodable
+  open class func encode<T>(_ value: T, prettyPrint: Swift.Bool = false) -> touchcodeSDK.EncodeResult where T : Swift.Encodable
+  @objc deinit
+}
+public struct Codeset : Swift.Codable {
+  public var codes: [touchcodeSDK.Touchcode]?
+  public var session: touchcodeSDK.Session?
+  public var decoderParams: Swift.String?
+  public init(codes: [touchcodeSDK.Touchcode]?, session: touchcodeSDK.Session?, decoderParams: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case codes
+    case session
+    case decoderParams
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Touchcode : Swift.Codable {
+  public var touchcodeId: Swift.String?
+  public var points: [Swift.Float]?
+  public var userAgent: Swift.String?
+  public init(touchcodeId: Swift.String?, points: [Swift.Float]?, userAgent: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case touchcodeId
+    case points
+    case userAgent
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class CryptoUtils {
+  public static func encryptJSONString(json: Swift.String, filename: Swift.String, key: Swift.String, iv: Swift.String) -> Swift.Bool
+  public static func encryptData(data: Foundation.Data, key: Swift.String, iv: Swift.String) -> Foundation.Data?
+  public static func decryptJSONString(filename: Swift.String, key: Swift.String, iv: Swift.String) -> Swift.String?
+  public static func decryptData(data: Foundation.Data, key: Swift.String, iv: Swift.String) -> Foundation.Data
+  @objc deinit
+}
+public struct Target : Swift.Codable {
+  public var targetUrl: Swift.String?
+  public var webDestination: Swift.String?
+  public var appDestination: Swift.String?
+  public init(targetUrl: Swift.String?, webDestination: Swift.String?, appDestination: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case targetUrl
+    case webDestination
+    case appDestination
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers @objc open class DecodeController : ObjectiveC.NSObject, CoreLocation.CLLocationManagerDelegate {
+  @objc public enum Endpoint : Swift.Int {
+    case disconnected = 0
+    case connected = 1
+    case hybrid = 2
+    public typealias RawValue = Swift.Int
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public init(endpoint: touchcodeSDK.DecodeController.Endpoint, campaign: Swift.String, view: UIKit.UIView, onDecode: @escaping ((Swift.String) -> Swift.Void))
+  @objc convenience public init(endpoint: touchcodeSDK.DecodeController.Endpoint, campaign: Swift.String, view: UIKit.UIView, basePath: Swift.String, onDecode: @escaping ((Swift.String) -> Swift.Void))
+  @available(*, deprecated)
+  @objc public init(endpoint: touchcodeSDK.DecodeController.Endpoint, file: Swift.String, view: UIKit.UIView, onDecode: @escaping ((Swift.String) -> Swift.Void))
+  @objc public func initializeAnalytics(getLocation: Swift.Bool)
+  @objc public func initializeAnalytics()
+  @objc public func setLocationEnabled(setting: Swift.Bool)
+  @objc public func processFrame(touches: Swift.Set<UIKit.UITouch>)
+  @objc public func processSynthFrame(touches: [CoreGraphics.CGPoint])
+  @available(*, deprecated)
+  @objc public func loadCodesetFromRemote()
+  @available(*, deprecated)
+  @objc public func loadCodesetFromLocal()
+  @objc public func updateLocation(location: CoreLocation.CLLocation)
+  @available(*, deprecated)
+  @objc public func recordSession(key: Swift.String?)
+  @available(*, deprecated)
+  @objc public func restartSession()
+  @objc public func locationManager(_ manager: CoreLocation.CLLocationManager, didChangeAuthorization status: CoreLocation.CLAuthorizationStatus)
+  @objc deinit
+  @objc override dynamic public init()
+}
+public struct Campaign : Swift.Codable {
+  public var campaignId: Swift.String?
+  public var actions: [touchcodeSDK.Action]?
+  public var session: touchcodeSDK.Session?
+  public var decoderParams: Swift.String?
+  public init(campaignId: Swift.String?, actions: [touchcodeSDK.Action]?, session: touchcodeSDK.Session?, decoderParams: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case campaignId
+    case actions
+    case session
+    case decoderParams
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+extension String : Swift.CodingKey {
+  public var stringValue: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public var intValue: Swift.Int? {
+    get
+  }
+  public init?(intValue: Swift.Int)
+}
+extension KeyedEncodingContainerProtocol {
+  public mutating func encodeArray<T>(_ values: [T], forKey key: Self.Key) throws where T : Swift.Encodable
+  public mutating func encodeArrayIfPresent<T>(_ values: [T]?, forKey key: Self.Key) throws where T : Swift.Encodable
+  public mutating func encodeMap<T>(_ pairs: [Self.Key : T]) throws where T : Swift.Encodable, Self.Key : Swift.Hashable
+  public mutating func encodeMapIfPresent<T>(_ pairs: [Self.Key : T]?) throws where T : Swift.Encodable, Self.Key : Swift.Hashable
+}
+extension KeyedDecodingContainerProtocol {
+  public func decodeArray<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T] where T : Swift.Decodable
+  public func decodeArrayIfPresent<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T]? where T : Swift.Decodable
+  public func decodeMap<T>(_ type: T.Type, excludedKeys: Swift.Set<Self.Key>) throws -> [Self.Key : T] where T : Swift.Decodable, Self.Key : Swift.Hashable
+}
+public enum ErrorResponse : Swift.Error {
+  case error(Swift.Int, Foundation.Data?, Swift.Error)
+}
+open class Response<T> {
+  final public let statusCode: Swift.Int
+  final public let header: [Swift.String : Swift.String]
+  final public let body: T?
+  public init(statusCode: Swift.Int, header: [Swift.String : Swift.String], body: T?)
+  convenience public init(response: Foundation.HTTPURLResponse, body: T?)
+  @objc deinit
+}
+public struct Session : Swift.Codable {
+  public var token: Swift.String?
+  public var expiration: Foundation.Date?
+  public init(token: Swift.String?, expiration: Foundation.Date?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class DefaultAPI {
+  open class func analyticsPost(analyticType: Swift.String, deviceId: Swift.String, campaignId: Swift.String, clLat: Swift.Float? = nil, clLon: Swift.Float? = nil, clIp: Swift.String? = nil, clTimezone: Swift.Int? = nil, clUseragent: Swift.String? = nil, clZipcode: Swift.String? = nil, clCountryCode: Swift.String? = nil, clStartTime: Swift.Int64? = nil, sessionLength: Swift.Int64? = nil, clNumberOfTouches: Swift.Int? = nil, attempts: Swift.Int? = nil, clSuccess: Swift.Bool? = nil, clTarget: Swift.String? = nil, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func analyticsPostWithRequestBuilder(analyticType: Swift.String, deviceId: Swift.String, campaignId: Swift.String, clLat: Swift.Float? = nil, clLon: Swift.Float? = nil, clIp: Swift.String? = nil, clTimezone: Swift.Int? = nil, clUseragent: Swift.String? = nil, clZipcode: Swift.String? = nil, clCountryCode: Swift.String? = nil, clStartTime: Swift.Int64? = nil, sessionLength: Swift.Int64? = nil, clNumberOfTouches: Swift.Int? = nil, attempts: Swift.Int? = nil, clSuccess: Swift.Bool? = nil, clTarget: Swift.String? = nil) -> touchcodeSDK.RequestBuilder<Swift.Void>
+  open class func campaignGet(campaignId: Swift.String, clIp: Swift.String, clLat: Swift.Float? = nil, clLon: Swift.Float? = nil, clTimezone: Swift.Int? = nil, clUseragent: Swift.String? = nil, clIdentity: Swift.String? = nil, completion: @escaping ((touchcodeSDK.Campaign?, Swift.Error?) -> Swift.Void))
+  open class func campaignGetWithRequestBuilder(campaignId: Swift.String, clIp: Swift.String, clLat: Swift.Float? = nil, clLon: Swift.Float? = nil, clTimezone: Swift.Int? = nil, clUseragent: Swift.String? = nil, clIdentity: Swift.String? = nil) -> touchcodeSDK.RequestBuilder<touchcodeSDK.Campaign>
+  open class func codesetGet(campaignId: Swift.String, latitude: Swift.Float? = nil, longitude: Swift.Float? = nil, timezone: Swift.Int? = nil, deviceInfo: Swift.String? = nil, identity: Swift.String? = nil, completion: @escaping ((touchcodeSDK.Codeset?, Swift.Error?) -> Swift.Void))
+  open class func codesetGetWithRequestBuilder(campaignId: Swift.String, latitude: Swift.Float? = nil, longitude: Swift.Float? = nil, timezone: Swift.Int? = nil, deviceInfo: Swift.String? = nil, identity: Swift.String? = nil) -> touchcodeSDK.RequestBuilder<touchcodeSDK.Codeset>
+  open class func decodingPost(sessionToken: Swift.String, campaignId: Swift.String, touchcodeId: Swift.String, actionId: Swift.Int, clIp: Swift.String, clTimezone: Swift.Int, clLat: Swift.Float? = nil, clLon: Swift.Float? = nil, clUseragent: Swift.String? = nil, clIdentity: Swift.String? = nil, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func decodingPostWithRequestBuilder(sessionToken: Swift.String, campaignId: Swift.String, touchcodeId: Swift.String, actionId: Swift.Int, clIp: Swift.String, clTimezone: Swift.Int, clLat: Swift.Float? = nil, clLon: Swift.Float? = nil, clUseragent: Swift.String? = nil, clIdentity: Swift.String? = nil) -> touchcodeSDK.RequestBuilder<Swift.Void>
+  open class func downloadGet(campaignId: Swift.String, clLat: Swift.Float? = nil, clLon: Swift.Float? = nil, clIp: Swift.String? = nil, clTimezone: Swift.Int? = nil, clUseragent: Swift.String? = nil, clIdentity: Swift.String? = nil, completion: @escaping ((Foundation.URL?, Swift.Error?) -> Swift.Void))
+  open class func downloadGetWithRequestBuilder(campaignId: Swift.String, clLat: Swift.Float? = nil, clLon: Swift.Float? = nil, clIp: Swift.String? = nil, clTimezone: Swift.Int? = nil, clUseragent: Swift.String? = nil, clIdentity: Swift.String? = nil) -> touchcodeSDK.RequestBuilder<Foundation.URL>
+  open class func targetGet(campaignId: Swift.String, touchcodeId: Swift.String, sessionToken: Swift.String, latitude: Swift.Float? = nil, longitude: Swift.Float? = nil, timezone: Swift.Int? = nil, deviceInfo: Swift.String? = nil, identity: Swift.String? = nil, completion: @escaping ((touchcodeSDK.Target?, Swift.Error?) -> Swift.Void))
+  open class func targetGetWithRequestBuilder(campaignId: Swift.String, touchcodeId: Swift.String, sessionToken: Swift.String, latitude: Swift.Float? = nil, longitude: Swift.Float? = nil, timezone: Swift.Int? = nil, deviceInfo: Swift.String? = nil, identity: Swift.String? = nil) -> touchcodeSDK.RequestBuilder<touchcodeSDK.Target>
+  open class func touchPost(sessionToken: Swift.String, touch: touchcodeSDK.Touch, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func touchPostWithRequestBuilder(sessionToken: Swift.String, touch: touchcodeSDK.Touch) -> touchcodeSDK.RequestBuilder<Swift.Void>
+  @objc deinit
+}
+extension UIDevice {
+  public var modelName: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers open class Configuration {
+  public static var dateFormat: Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class SwaggerClientAPI {
+  public static var basePath: Swift.String
+  public static var credential: Foundation.URLCredential?
+  public static var customHeaders: [Swift.String : Swift.String]
+  public static var requestBuilderFactory: touchcodeSDK.RequestBuilderFactory
+  @objc deinit
+}
+open class RequestBuilder<T> {
+  final public let parameters: [Swift.String : Any]?
+  final public let isBody: Swift.Bool
+  final public let method: Swift.String
+  final public let URLString: Swift.String
+  public var onProgressReady: ((Foundation.Progress) -> ())?
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = [:])
+  open func addHeaders(_ aHeaders: [Swift.String : Swift.String])
+  open func execute(_ completion: @escaping (touchcodeSDK.Response<T>?, Swift.Error?) -> Swift.Void)
+  public func addHeader(name: Swift.String, value: Swift.String) -> Self
+  open func addCredential() -> Self
+  @objc deinit
+}
+public protocol RequestBuilderFactory {
+  func getNonDecodableBuilder<T>() -> touchcodeSDK.RequestBuilder<T>.Type
+  func getBuilder<T>() -> touchcodeSDK.RequestBuilder<T>.Type where T : Swift.Decodable
+}
+public struct Action : Swift.Codable {
+  public var actionId: Swift.Int?
+  public var target: touchcodeSDK.Target?
+  public var touchcode: touchcodeSDK.Touchcode?
+  public var decoderType: Swift.Int?
+  public var taughtCode: Swift.Bool?
+  public var priority: Swift.Int?
+  public var rule: Swift.String?
+  public init(actionId: Swift.Int?, target: touchcodeSDK.Target?, touchcode: touchcodeSDK.Touchcode?, decoderType: Swift.Int?, taughtCode: Swift.Bool?, priority: Swift.Int?, rule: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case actionId
+    case target
+    case touchcode
+    case decoderType
+    case taughtCode
+    case priority
+    case rule
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Touch : Swift.Codable {
+  public var points: [Swift.Float]?
+  public init(points: [Swift.Float]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class JSONEncodingHelper {
+  open class func encodingParameters<T>(forEncodableObject encodableObj: T?) -> Alamofire.Parameters? where T : Swift.Encodable
+  open class func encodingParameters(forEncodableObject encodableObj: Any?) -> Alamofire.Parameters?
+  @objc deinit
+}
+extension UIDevice {
+  public static let modelName: Swift.String
+}
+@_inheritsConvenienceInitializers open class AlamofireRequestBuilder<T> : touchcodeSDK.RequestBuilder<T> {
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = [:])
+  open func createSessionManager() -> Alamofire.SessionManager
+  open func contentTypeForFormPart(fileURL: Foundation.URL) -> Swift.String?
+  open func makeRequest(manager: Alamofire.SessionManager, method: Alamofire.HTTPMethod, encoding: Alamofire.ParameterEncoding, headers: [Swift.String : Swift.String]) -> Alamofire.DataRequest
+  override open func execute(_ completion: @escaping (touchcodeSDK.Response<T>?, Swift.Error?) -> Swift.Void)
+  open func buildHeaders() -> [Swift.String : Swift.String]
+  @objc deinit
+}
+public enum AlamofireDecodableRequestBuilderError : Swift.Error {
+  case emptyDataResponse
+  case nilHTTPResponse
+  case jsonDecoding(Swift.DecodingError)
+  case generalError(Swift.Error)
+}
+@_inheritsConvenienceInitializers open class AlamofireDecodableRequestBuilder<T> : touchcodeSDK.AlamofireRequestBuilder<T> where T : Swift.Decodable {
+  @objc deinit
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = super)
+}
+public struct APIHelper {
+  public static func rejectNil(_ source: [Swift.String : Any?]) -> [Swift.String : Any]?
+  public static func rejectNilHeaders(_ source: [Swift.String : Any?]) -> [Swift.String : Swift.String]
+  public static func convertBoolToString(_ source: [Swift.String : Any]?) -> [Swift.String : Any]?
+  public static func mapValuesToQueryItems(_ source: [Swift.String : Any?]) -> [Foundation.URLQueryItem]?
+}
+extension touchcodeSDK.Codeset.CodingKeys : Swift.Equatable {}
+extension touchcodeSDK.Codeset.CodingKeys : Swift.Hashable {}
+extension touchcodeSDK.Codeset.CodingKeys : Swift.RawRepresentable {}
+extension touchcodeSDK.Touchcode.CodingKeys : Swift.Equatable {}
+extension touchcodeSDK.Touchcode.CodingKeys : Swift.Hashable {}
+extension touchcodeSDK.Touchcode.CodingKeys : Swift.RawRepresentable {}
+extension touchcodeSDK.Target.CodingKeys : Swift.Equatable {}
+extension touchcodeSDK.Target.CodingKeys : Swift.Hashable {}
+extension touchcodeSDK.Target.CodingKeys : Swift.RawRepresentable {}
+extension touchcodeSDK.DecodeController.Endpoint : Swift.Equatable {}
+extension touchcodeSDK.DecodeController.Endpoint : Swift.Hashable {}
+extension touchcodeSDK.DecodeController.Endpoint : Swift.RawRepresentable {}
+extension touchcodeSDK.Campaign.CodingKeys : Swift.Equatable {}
+extension touchcodeSDK.Campaign.CodingKeys : Swift.Hashable {}
+extension touchcodeSDK.Campaign.CodingKeys : Swift.RawRepresentable {}
+extension touchcodeSDK.Action.CodingKeys : Swift.Equatable {}
+extension touchcodeSDK.Action.CodingKeys : Swift.Hashable {}
+extension touchcodeSDK.Action.CodingKeys : Swift.RawRepresentable {}
